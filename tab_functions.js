@@ -70,15 +70,49 @@ function duplicateRow(row){
 
     incrementId(newRow); // Increment the row's ID
     var cells = newRow.cells;
+    var ocells = row.cells;
+
     for(var i = 0; i < cells.length; i++){
         incrementId(cells[i]); // Increment the cells' IDs
     }
     insertAfter(row, newRow); // Insert the row at the right position
-    idInit++;
+    idInit++;//inc row id
+
+
+
+    for(var i = 0; i < cells.length; i++){
+   //update input frame to include proper numbering
+        updateinput(cells[i]);
+   //set old cell values to static so you can save 
+        freezevals(ocells[i]);
+
+    }
     
 }
 
+//locks in values of previoiusly submitted values
+function freezevals(elem){
+
+
+    if (elem.id.split('-')[2] != 'endtimebox'){
+        if (document.getElementById(elem.id).children[0].type == 'text') {
+            document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
+        }
+    }
+}
+
+function updateinput(elem){
+
+    //Update input element value
+    if (elem.id.split('-')[2] != 'endtimebox'){
+        document.getElementById(elem.id).children[0].id = elem.id.replace('row','box') 
+    }
+    //console.log(document.getElementById(elem.id))
+    //document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
+}
+
 function incrementId(elem){
+
 
 //Change ids of cell to increment by 1
     idParts = elem.id.split('-'); // Cut up the element's ID to get the second part.
@@ -86,9 +120,14 @@ function incrementId(elem){
     idInit ? idParts[1] = idInit + 1 : idInit = idParts[1]++;  // Increment the ID, and set a temp variable to keep track of the id's.
     
     elem.id = idParts.join('-'); // Set the new id to the element.
-// change id of input box (does not work)
-    elem.children.id = elem.id.replace('row','box')
    
+}
+
+function saveform(){
+    var data = document.getElementById("irisTable").innerHTML;
+    var fname = 'loggingdata.html'
+    saveAs(data,fname)
+
 }
 
 function insertAfter(after, newNode){
