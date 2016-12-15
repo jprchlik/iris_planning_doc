@@ -31,8 +31,8 @@
             <td id = "1-1-ysrow"><input size=6 type="text" id="1-1-ysbox"/ ></td>
             <td id = "1-1-obsidrow"><input size=10 type="text" id="1-1-obsidbox"/ ></td>
             <td id = "1-1-titlerow"><input size=35 type="text" id="1-1-titlebox"/ ></td>
-            <td id = "1-1-aecrow"><input size=1 type="checkbox" id="1-1-aecbox"/ ></td>
-            <td id = "1-1-trackboxrow"><input size=1 type="checkbox" id="1-1-trackbox"/ ></td>
+            <td id = "1-1-aecrow"><input size=1 type="checkbox" onclick="if(this.checked) {value=1}" id="1-1-aecbox"/ ></td>
+            <td id = "1-1-trackboxrow"><input size=1 type="checkbox" onclick="if(this.check) {value=1}" id="1-1-trackbox"/ ></td>
             <td id = "1-1-deleterow"><input type="button" id="1-1-delbutton" value="Delete" onclick="deleteRow(this)"/></td>
 <!--        
             <td><input type="button" id="addmorebutton" value="Add" onclick="insRow()"/></td>
@@ -41,5 +41,14 @@
             <td id = "1-1-addmorerow"><input type="button" id="1-1-addmorebutton" value="Add" onclick="duplicateRow(this)"/></td>
             <td id = "1-1-computeendtimerow"><input type="button" id="1-1-computeendtime" value="Compute End Time" onclick="findend(this)"/></td>
         </tr>
+    </table>
+
+<div id='savediv'>
+    <table id='savetable'>
+        <tr>
+            <td id = 'saverow'><input type='button' id="savebutton" value='SAVE' onclick="saveform()"/></td>
+        </tr>
+
+
     </table>
 </html>
