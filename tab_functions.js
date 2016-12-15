@@ -79,36 +79,82 @@ function duplicateRow(row){
     idInit++;//inc row id
 
 
-
     for(var i = 0; i < cells.length; i++){
    //update input frame to include proper numbering
-        updateinput(cells[i]);
+        var dofreeze = updateinput(cells[i]);
    //set old cell values to static so you can save 
-        freezevals(ocells[i]);
-
+        if (dofreeze == 1){
+            freezevals(ocells[i]);
+        }
     }
-    
 }
 
 //locks in values of previoiusly submitted values
 function freezevals(elem){
 
-
     if (elem.id.split('-')[2] != 'endtimebox'){
+        console.log(elem.id)
+        console.log(document.getElementById(elem.id))
         if (document.getElementById(elem.id).children[0].type == 'text') {
             document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
         }
     }
 }
 
+
 function updateinput(elem){
+    //dictionary to make unfrozen table if add table call is frozen
+    var propdict = {
+                    "dayrow":[1,"text",""],
+                    "statimerow":[8,"text",""],
+                    "exptimerow":[7,"text",""],
+                    "repeatsrow":[5,"text",""],
+                    "xsrow":[6,"text",""],
+                    "ysrow":[6,"text",""],
+                    "obsidrow":[10,"text",""],
+                    "titlerow":[35,"text",""]
+                    };
+
+
+   //look whether to freeze column or not
+    var dofreeze = 1;
 
     //Update input element value
     if (elem.id.split('-')[2] != 'endtimebox'){
-        document.getElementById(elem.id).children[0].id = elem.id.replace('row','box') 
+    // check to see if box has a child (i.e. the box is frozen)
+        if (document.getElementById(elem.id).innerHTML[0] == '<'){
+            document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
+    // clears out previous data
+            if (document.getElementById(elem.id).children[0].type == 'text') {
+                document.getElementById(elem.id).children[0].value = null; 
+                document.getElementById(elem.id).value = null;
+            }
+        }
+
+        if (document.getElementById(elem.id).innerHTML[0] != '<'){
+            console.log('No Children');
+            var node = document.createElement("input");
+// id of variable to put into dictionary propdict
+            var inid = elem.id.split('-');
+
+            var thisid = propdict[inid[2]];
+//set up attributes from dictionary
+            node.setAttribute('type',thisid[1]);
+            node.setAttribute('value',thisid[2]);
+            node.setAttribute('size',thisid[0]);
+            node.setAttribute('id',inid[0]+'-'+inid[1]+'-'+inid[2].replace('row','box'));
+
+//Addend onto parent
+            document.getElementById(elem.id).appendChild(node);
+//do not freeze frozen data
+            dofreeze = 0;
+        }
+         
+        
     }
     //console.log(document.getElementById(elem.id))
     //document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
+    return dofreeze;
 }
 
 function incrementId(elem){
@@ -126,7 +172,7 @@ function incrementId(elem){
 function saveform(){
     var data = document.getElementById("irisTable").innerHTML;
     var fname = 'loggingdata.html'
-    saveAs(data,fname)
+    console.log(document.getElementById("irisTable"))
 
 }
 
