@@ -133,6 +133,8 @@ function updateinput(elem){
 
         if (document.getElementById(elem.id).innerHTML[0] != '<'){
             console.log('No Children');
+//remove data from HTML row
+            document.getElementById(elem.id).innerHTML = ''
             var node = document.createElement("input");
 // id of variable to put into dictionary propdict
             var inid = elem.id.split('-');
