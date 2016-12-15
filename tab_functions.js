@@ -43,7 +43,7 @@ function findend(row)
 // Add exposure time to start time 
     date.setSeconds(date.getSeconds()+addsec);
 // Add slew time (Assume slow)
-    var addslew = 11 //min
+    var addslew = 8 //min
     date.setMinutes(date.getMinutes()+addslew)
 
 
