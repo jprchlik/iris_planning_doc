@@ -1,0 +1,44 @@
+
+<html>
+<head>
+      <script type='text/javascript' src='tab_functions.js'></script>
+</head>
+<div id="POItablediv">
+<!--    <input type="button" id="addPOIbutton" value="Add POIs"/><br/><br/>
+-->
+    <table id="irisTable" border="1">
+        <tr>
+            <td>Day</td>
+            <td>Start Time</td>
+            <td>Exp. Time[s]</td>
+            <td>Repeats</td>
+            <td>End Time</td>
+            <td>X['']</td>
+            <td>Y['']</td>
+            <td>OBSID</td>
+            <td>Title</td>
+            <td>AEC</td>
+            <td>Track</td>
+        </tr>
+        <tr id="1-1-samplerow">
+            <td id = "1-1-dayrow"/><input size=1 type="text" id="1-1-daybox"/></td>
+            <td id = "1-1-statimerow"/><input size=8 type="text" id="1-1-statimebox"/></td>
+            <td id = "1-1-exptimerow"/><input size=7 type="text" id="1-1-exptimebox"/ ></td>
+            <td id = "1-1-repeatsrow"/><input size=5 type="text" id="1-1-repeatsbox"/ ></td>
+            <td size=8 type="text" id="1-1-endtimebox"/ ></td>
+            <td id = "1-1-xsrow"><input size=3 type="text" id="1-1-xsbox"/ ></td>
+            <td id = "1-1-ysrow"><input size=3 type="text" id="1-1-ysbox"/ ></td>
+            <td id = "1-1-obsidrow"><input size=10 type="text" id="1-1-obsidbox"/ ></td>
+            <td id = "1-1-titlerow"><input size=35 type="text" id="1-1-titlebox"/ ></td>
+            <td id = "1-1-aecrow"><input size=1 type="checkbox" id="1-1-aecbox"/ ></td>
+            <td id = "1-1-trackboxrow"><input size=1 type="checkbox" id="1-1-trackbox"/ ></td>
+            <td id = "1-1-deleterow"><input type="button" id="1-1-delbutton" value="Delete" onclick="deleteRow(this)"/></td>
+<!--        
+            <td><input type="button" id="addmorebutton" value="Add" onclick="insRow()"/></td>
+            <td><input type="button" id="1-1-addmorebutton" value="Add" onclick="cloneRow()"/></td>
+-->
+            <td id = "1-1-addmorerow"><input type="button" id="1-1-addmorebutton" value="Add" onclick="duplicateRow(this)"/></td>
+            <td id = "1-1-computeendtimerow"><input type="button" id="1-1-computeendtime" value="Compute End Time" onclick="findend(this)"/></td>
+        </tr>
+    </table>
+</html>
