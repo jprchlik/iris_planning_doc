@@ -1,3 +1,22 @@
+function freezeday()
+{
+    //day table
+    var dott = document.getElementById('irisweektab');
+
+    for (var i=1,row;row=dott.rows[i];i++){
+        for (var j=1,col;col =row.cells[j]; j++){
+            freezevals(col)
+    
+        }
+
+    }
+
+
+
+}
+
+
+
 function deleteRow(row)
 {
 // Delete selected row
