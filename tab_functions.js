@@ -89,7 +89,7 @@ function duplicateRow(row){
     }
 }
 
-//locks in values of previoiusly submitted values
+//locks in values of previously submitted values
 function freezevals(elem){
 
     if (elem.id.split('-')[2] != 'endtimebox'){
@@ -103,7 +103,7 @@ function freezevals(elem){
 
 
 function updateinput(elem){
-    //dictionary to make unfrozen table if add table call is frozen
+    //dictionary to make thaw table if add table call is frozen
     var propdict = {
                     "dayrow":[1,"text",""],
                     "statimerow":[8,"text",""],
@@ -112,7 +112,8 @@ function updateinput(elem){
                     "xsrow":[6,"text",""],
                     "ysrow":[6,"text",""],
                     "obsidrow":[10,"text",""],
-                    "titlerow":[35,"text",""]
+                    "titlerow":[35,"text",""],
+                    "rollrow":[3,"text",""]
                     };
 
 
