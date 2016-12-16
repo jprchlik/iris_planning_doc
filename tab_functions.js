@@ -93,9 +93,7 @@ function duplicateRow(row){
 function freezevals(elem){
 
     if (elem.id.split('-')[2] != 'endtimebox'){
-        console.log(elem.id)
-        console.log(document.getElementById(elem.id))
-        if (document.getElementById(elem.id).children[0].type == 'text') {
+        if (document.getElementById(elem.id).children[0].type != 'button') {
             document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
         }
     }
@@ -113,7 +111,9 @@ function updateinput(elem){
                     "ysrow":[6,"text",""],
                     "obsidrow":[10,"text",""],
                     "titlerow":[35,"text",""],
-                    "rollrow":[3,"text",""]
+                    "rollrow":[3,"text",""],
+                    "aecrow":[1,"checkbox","off"],
+                    "trackrow":[1,"checkbox","off"]
                     };
 
 
@@ -133,7 +133,6 @@ function updateinput(elem){
         }
 
         if (document.getElementById(elem.id).innerHTML[0] != '<'){
-            console.log('No Children');
 //remove data from HTML row
             document.getElementById(elem.id).innerHTML = ''
             var node = document.createElement("input");
