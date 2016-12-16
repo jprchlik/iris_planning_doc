@@ -125,9 +125,15 @@ function updateinput(elem){
     // check to see if box has a child (i.e. the box is frozen)
         if (document.getElementById(elem.id).innerHTML[0] == '<'){
             document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
-    // clears out previous data
+    // clears out previous data from text 
             if (document.getElementById(elem.id).children[0].type == 'text') {
                 document.getElementById(elem.id).children[0].value = null; 
+                document.getElementById(elem.id).value = null;
+            }
+    // clears out previous data form checkbox
+            if (document.getElementById(elem.id).children[0].type == 'checkbox') {
+                document.getElementById(elem.id).children[0].value = 'off'; 
+                document.getElementById(elem.id).children[0].checked = false; 
                 document.getElementById(elem.id).value = null;
             }
         }
@@ -145,6 +151,9 @@ function updateinput(elem){
             node.setAttribute('value',thisid[2]);
             node.setAttribute('size',thisid[0]);
             node.setAttribute('id',inid[0]+'-'+inid[1]+'-'+inid[2].replace('row','box'));
+            if (thisid[1] == 'checkbox'){
+                node.setAttribute('onclick', "if(this.checked) {value='on'}");
+            }
 
 //Addend onto parent
             document.getElementById(elem.id).appendChild(node);
