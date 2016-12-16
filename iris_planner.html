@@ -8,12 +8,20 @@
     <table id="irisdoytab">
        <tr>
            <td>IRIS Planning Day of Year</td>
-           <td input='doydata'><input size=3 type="text" id='doyinput'/></td>
+           <td id='doydata'><input size=3 type="text" id='doyinput'/></td>
        </tr>
        <tr>
            <td>IRIS Memory Usage</td>
-           <td input='memuse'><input size=3 type="text" id='memuseinput'/></td>
+           <td id='memuse'><input size=3 type="text" id='memuseinput'/></td>
        </tr>
+    </table>
+
+<div id="freezediv">
+    <table id='freezetab'>
+        <tr>
+            <td id='freeze'><input size=10 type="button" id="freezebutton" value="Freeze" onclick="freezeday()"/></td>
+            <td id='thaw'><input size=10 type="button" id="thawbutton" value="Thaw" onclick="thawday()"/></td>
+        </tr>
     </table>
 
 <div id='irisweek'>
@@ -29,34 +37,34 @@
             <td>Sun</td>
         </tr>
         <tr>
-            <td>Day of Month</td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
+            <td id="0-domrow">Day of Month</td>
+            <td id="1-domrow"><input size=2 id="1-dombox" type='text'></td>
+            <td id="2-domrow"><input size=2 id="2-dombox" type='text'></td>
+            <td id="3-domrow"><input size=2 id="3-dombox" type='text'></td>
+            <td id="4-domrow"><input size=2 id="4-dombox" type='text'></td>
+            <td id="5-domrow"><input size=2 id="5-dombox" type='text'></td>
+            <td id="6-domrow"><input size=2 id="6-dombox" type='text'></td>
+            <td id="7-domrow"><input size=2 id="7-dombox" type='text'></td>
         </tr>
         <tr>
-            <td>Day of Year</td>
-            <td><input size=3 type='text'></td>
-            <td><input size=3 type='text'></td>
-            <td><input size=3 type='text'></td>
-            <td><input size=3 type='text'></td>
-            <td><input size=3 type='text'></td>
-            <td><input size=3 type='text'></td>
-            <td><input size=3 type='text'></td>
+            <td id="0-doyrow">Day of Year</td>
+            <td id="1-doyrow"><input size=3 id="1-doybox" type='text'></td>
+            <td id="2-doyrow"><input size=3 id="2-doybox" type='text'></td>
+            <td id="3-doyrow"><input size=3 id="3-doybox" type='text'></td>
+            <td id="4-doyrow"><input size=3 id="4-doybox" type='text'></td>
+            <td id="5-doyrow"><input size=3 id="5-doybox" type='text'></td>
+            <td id="6-doyrow"><input size=3 id="6-doybox" type='text'></td>
+            <td id="7-doyrow"><input size=3 id="7-doybox" type='text'></td>
         </tr>
         <tr>
-            <td>Day in Timeline</td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
-            <td><input size=2 type='text'></td>
+            <td id="0-dotrow">Day in Timeline</td>
+            <td id="1-dotrow"><input size=2 id="1-dotbox" type='text'></td>
+            <td id="2-dotrow"><input size=2 id="2-dotbox" type='text'></td>
+            <td id="3-dotrow"><input size=2 id="3-dotbox" type='text'></td>
+            <td id="4-dotrow"><input size=2 id="4-dotbox" type='text'></td>
+            <td id="5-dotrow"><input size=2 id="5-dotbox" type='text'></td>
+            <td id="6-dotrow"><input size=2 id="6-dotbox" type='text'></td>
+            <td id="7-dotrow"><input size=2 id="7-dotbox" type='text'></td>
         </tr>
 
     </table>
