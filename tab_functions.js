@@ -11,6 +11,14 @@ function freezeday()
 
     }
 
+   //freeze doy cell
+    var doycell = document.getElementById('1-1-doyrowdata');
+    freezevals(doycell);
+   // freeze memory cell 
+    var memcell = document.getElementById('1-1-memuserow');
+    freezevals(memcell);
+    
+
 
 
 }
