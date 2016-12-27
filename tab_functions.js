@@ -23,6 +23,12 @@ function freezeday()
 
 }
 
+//function to thaw day data
+function thawday()
+{
+
+    console.log("Not Implimented")
+}
 
 
 function deleteRow(row)
@@ -207,14 +213,23 @@ function incrementId(elem){
    
 }
 
-function saveform(){
+function saveform()
+{
     var data = document.getElementById("irisTable").innerHTML;
     var fname = 'loggingdata.html'
     console.log(document.getElementById("irisTable"))
 
 }
 
-function insertAfter(after, newNode){
+//function to save updated html file
+function saveupdate()
+{
+    document.execCommand("SaveAs")
+
+}
+
 //Insert new row at bottom
+function insertAfter(after, newNode)
+{
     after.parentNode.insertBefore(newNode, after.nextSibling);
 }
