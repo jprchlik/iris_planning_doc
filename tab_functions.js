@@ -12,14 +12,75 @@ function freezeday()
     }
 
    //freeze doy cell
-    var doycell = document.getElementById('1-1-doyrowdata');
+    var doycell = document.getElementById('1-doyrowdata');
     freezevals(doycell);
    // freeze memory cell 
-    var memcell = document.getElementById('1-1-memuserow');
+    var memcell = document.getElementById('1-memuserow');
     freezevals(memcell);
+
+}
+
+
+//function to thaw day data
+function thawday()
+{
+    //day table
+    var dott = document.getElementById('irisweektab');
+
+    for (var i=1,row;row=dott.rows[i];i++){
+        for (var j=1,col;col =row.cells[j]; j++){
+            thawvals(col)
     
+        }
+
+    }
+
+   //thaw doy cell
+    var doycell = document.getElementById('1-doyrowdata');
+    thawvals(doycell);
+   // thaw memory cell 
+    var memcell = document.getElementById('1-memuserow');
+    thawvals(memcell);
 
 
+
+    console.log("Not Implimented")
+}
+
+function thawvals(elem)
+{
+    console.log(elem)
+    //dictionary to make thaw table if add table call is frozen
+    var propdict = {
+                    "domrow":[1,"text",""],
+                    };
+
+
+   //look whether to freeze column or not
+    var dofreeze = 1;
+
+    // check to see if box has a child (i.e. the box is frozen)
+    if (document.getElementById(elem.id).innerHTML[0] == '<'){
+        document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
+    }
+    if (document.getElementById(elem.id).innerHTML[0] != '<'){
+//remove data from HTML row
+        document.getElementById(elem.id).innerHTML = ''
+        var node = document.createElement("input");
+// id of variable to put into dictionary propdict
+        var inid = elem.id.split('-');
+        console.log(inid)
+
+        var thisid = propdict[inid[1]];
+//set up attributes from dictionary
+        node.setAttribute('type',thisid[1]);
+        node.setAttribute('value',thisid[2]);
+        node.setAttribute('size',thisid[0]);
+        node.setAttribute('id',inid[0]+'-'+inid[1]+'-'+inid[2].replace('row','box'));
+
+//Addend onto parent
+        document.getElementById(elem.id).appendChild(node);
+    }
 
 }
 
@@ -55,12 +116,6 @@ function load(key)
 {
     var values = localStorage.getItem(key);
     document.getElementById(key).innerHTML = values;
-}
-//function to thaw day data
-function thawday()
-{
-
-    console.log("Not Implimented")
 }
 
 
@@ -234,8 +289,8 @@ function updateinput(elem){
     return dofreeze;
 }
 
-function incrementId(elem){
-
+function incrementId(elem)
+{
 
 //Change ids of cell to increment by 1
     idParts = elem.id.split('-'); // Cut up the element's ID to get the second part.
@@ -246,6 +301,7 @@ function incrementId(elem){
    
 }
 
+//DOES NOT WORK
 function saveform()
 {
     var data = document.getElementById("irisTable").innerHTML;
@@ -255,6 +311,7 @@ function saveform()
 }
 
 //function to save updated html file
+//Does not work
 function saveupdate()
 {
     document.execCommand("SaveAs")
