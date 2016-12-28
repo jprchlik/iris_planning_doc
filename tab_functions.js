@@ -44,15 +44,19 @@ function thawday()
 
 
 
-    console.log("Not Implimented")
+//    console.log("Not Implimented")
 }
 
 function thawvals(elem)
 {
-    console.log(elem)
+//    console.log(elem)
     //dictionary to make thaw table if add table call is frozen
     var propdict = {
-                    "domrow":[1,"text",""],
+                    "doyrowdata":[3,"text",""],
+                    "memuserow":[3,"text",""],
+                    "domrow":[2,"text",""],
+                    "doyrow":[3,"text",""],
+                    "dotrow":[2,"text",""],
                     };
 
 
@@ -64,19 +68,21 @@ function thawvals(elem)
         document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
     }
     if (document.getElementById(elem.id).innerHTML[0] != '<'){
+//store previous value
+        var prev = document.getElementById(elem.id).innerHTML
 //remove data from HTML row
         document.getElementById(elem.id).innerHTML = ''
         var node = document.createElement("input");
 // id of variable to put into dictionary propdict
         var inid = elem.id.split('-');
-        console.log(inid)
+//        console.log(inid)
 
         var thisid = propdict[inid[1]];
 //set up attributes from dictionary
         node.setAttribute('type',thisid[1]);
-        node.setAttribute('value',thisid[2]);
+        node.setAttribute('value',prev);
         node.setAttribute('size',thisid[0]);
-        node.setAttribute('id',inid[0]+'-'+inid[1]+'-'+inid[2].replace('row','box'));
+        node.setAttribute('id',inid[0]+'-'+inid[1].replace('row','box'));
 
 //Addend onto parent
         document.getElementById(elem.id).appendChild(node);
