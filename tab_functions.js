@@ -23,6 +23,39 @@ function freezeday()
 
 }
 
+
+//save table html5 feature
+function savehtml5()
+{
+    var key = 'irisTable';
+    save(key);
+    save('irisdoytab');
+    save('irisweektab');
+
+}
+
+//do the saving outside the button
+function save(key)
+{
+    var values = document.getElementById(key).innerHTML;
+    localStorage.setItem(key,values);
+}
+
+//load saved table
+function loadhtml5()
+{
+    var key = 'irisTable';
+    load(key);
+    load('irisdoytab');
+    load('irisweektab');
+}
+
+//load saved outside the button
+function load(key)
+{
+    var values = localStorage.getItem(key);
+    document.getElementById(key).innerHTML = values;
+}
 //function to thaw day data
 function thawday()
 {
