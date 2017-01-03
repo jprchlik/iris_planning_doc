@@ -179,7 +179,7 @@ function findend(row)
     var endHour = checkTime(date.getHours()) + ':' + checkTime(date.getMinutes())+ ":" + checkTime(date.getSeconds());
 
 // update endtime
-    document.getElementById('1-'+i+'-endtimebox').innerHTML = endHour;
+    document.getElementById('1-'+i+'-endtimebox').value = endHour;
     
 }
 
@@ -219,10 +219,11 @@ function duplicateRow(row){
 //locks in values of previously submitted values
 function freezevals(elem){
 
-    if (elem.id.split('-')[2] != 'endtimebox'){
-        if (document.getElementById(elem.id).children[0].type != 'button') {
-            document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
-        }
+//Changed to allow manual setting of endtimebox
+//    if (elem.id.split('-')[2] != 'endtimebox'){
+   if (document.getElementById(elem.id).children[0].type != 'button') {
+       document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
+//        }
     }
 }
 
@@ -234,13 +235,15 @@ function updateinput(elem){
                     "statimerow":[8,"text",""],
                     "exptimerow":[7,"text",""],
                     "repeatsrow":[5,"text",""],
+                    "endtimerow":[8,"text",""],
                     "xsrow":[6,"text",""],
                     "ysrow":[6,"text",""],
                     "obsidrow":[10,"text",""],
                     "titlerow":[35,"text",""],
                     "rollrow":[3,"text",""],
                     "aecrow":[1,"checkbox","off"],
-                    "trackrow":[1,"checkbox","off"]
+                    "trackrow":[1,"checkbox","off"],
+                    "wobblerow":[1,"checkbox","on"]
                     };
 
 
@@ -248,22 +251,23 @@ function updateinput(elem){
     var dofreeze = 1;
 
     //Update input element value
-    if (elem.id.split('-')[2] != 'endtimebox'){
-    // check to see if box has a child (i.e. the box is frozen)
-        if (document.getElementById(elem.id).innerHTML[0] == '<'){
-            document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
-    // clears out previous data from text 
-            if (document.getElementById(elem.id).children[0].type == 'text') {
-                document.getElementById(elem.id).children[0].value = null; 
-                document.getElementById(elem.id).value = null;
-            }
-    // clears out previous data form checkbox
-            if (document.getElementById(elem.id).children[0].type == 'checkbox') {
-                document.getElementById(elem.id).children[0].value = 'off'; 
-                document.getElementById(elem.id).children[0].checked = false; 
-                document.getElementById(elem.id).value = null;
-            }
+    //Changed to allow manual setting of endtimebox (2017/01/03 J. Prchlik)
+//    if (elem.id.split('-')[2] != 'endtimebox'){
+// check to see if box has a child (i.e. the box is frozen)
+    if (document.getElementById(elem.id).innerHTML[0] == '<'){
+        document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
+// clears out previous data from text 
+        if (document.getElementById(elem.id).children[0].type == 'text') {
+            document.getElementById(elem.id).children[0].value = null; 
+            document.getElementById(elem.id).value = null;
         }
+// clears out previous data form checkbox
+        if (document.getElementById(elem.id).children[0].type == 'checkbox') {
+            document.getElementById(elem.id).children[0].value = 'off'; 
+            document.getElementById(elem.id).children[0].checked = false; 
+            document.getElementById(elem.id).value = null;
+        }
+    }
 
         if (document.getElementById(elem.id).innerHTML[0] != '<'){
 //remove data from HTML row
@@ -289,7 +293,7 @@ function updateinput(elem){
         }
          
         
-    }
+//    }
     //console.log(document.getElementById(elem.id))
     //document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
     return dofreeze;
