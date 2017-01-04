@@ -1,3 +1,13 @@
+function updatewobbletable(row)
+{
+
+    var j = row.id;
+    var e = row.options[row.selectedIndex].value;
+    row.value = e;
+
+}
+
+
 function freezeday()
 {
     //day table
@@ -189,7 +199,7 @@ var idInit = 1;
 function duplicateRow(row){
 
 //copy based of  the row clicked
-	var j = row.parentNode.id.split('-')[1]
+    var j = row.parentNode.id.split('-')[1]
 //Create a duplicated of the last row created
     var table = document.getElementById("irisTable"); // find table to append to
     var row   = document.getElementById('1-'+j+'-samplerow');
@@ -220,11 +230,12 @@ function duplicateRow(row){
 function freezevals(elem){
 
 //Changed to allow manual setting of endtimebox
-//    if (elem.id.split('-')[2] != 'endtimebox'){
-   if (document.getElementById(elem.id).children[0].type != 'button') {
-       document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
-//        }
-    }
+//Changed to ignore phase orbital wobble 
+//   if (elem.id.split('-')[2] != 'tabwobblerow'){
+       if (document.getElementById(elem.id).children[0].type != 'button') {
+           document.getElementById(elem.id).innerHTML =  document.getElementById(elem.id).children[0].value;
+        }
+//    }
 }
 
 
@@ -243,7 +254,8 @@ function updateinput(elem){
                     "rollrow":[3,"text",""],
                     "aecrow":[1,"checkbox","off"],
                     "trackrow":[1,"checkbox","off"],
-                    "wobblerow":[1,"checkbox","on"]
+                    "wobblerow":[1,"checkbox","off"],
+                    "tabwobblerow":[1,"select",""]
                     };
 
 
@@ -252,32 +264,31 @@ function updateinput(elem){
 
     //Update input element value
     //Changed to allow manual setting of endtimebox (2017/01/03 J. Prchlik)
-//    if (elem.id.split('-')[2] != 'endtimebox'){
+    if (elem.id.split('-')[2] != 'tabwobblerow'){
 // check to see if box has a child (i.e. the box is frozen)
-    if (document.getElementById(elem.id).innerHTML[0] == '<'){
-        document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
-// clears out previous data from text 
-        if (document.getElementById(elem.id).children[0].type == 'text') {
-            document.getElementById(elem.id).children[0].value = null; 
-            document.getElementById(elem.id).value = null;
+        if (document.getElementById(elem.id).innerHTML[0] == '<'){
+            document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
+    // clears out previous data from text 
+            if (document.getElementById(elem.id).children[0].type == 'text') {
+                document.getElementById(elem.id).children[0].value = null; 
+                document.getElementById(elem.id).value = null;
+            }
+    // clears out previous data form checkbox
+            if (document.getElementById(elem.id).children[0].type == 'checkbox') {
+                document.getElementById(elem.id).children[0].value = 'off'; 
+                document.getElementById(elem.id).children[0].checked = false; 
+                document.getElementById(elem.id).value = null;
+            }
         }
-// clears out previous data form checkbox
-        if (document.getElementById(elem.id).children[0].type == 'checkbox') {
-            document.getElementById(elem.id).children[0].value = 'off'; 
-            document.getElementById(elem.id).children[0].checked = false; 
-            document.getElementById(elem.id).value = null;
-        }
-    }
-
+    
         if (document.getElementById(elem.id).innerHTML[0] != '<'){
-//remove data from HTML row
+    //remove data from HTML row
             document.getElementById(elem.id).innerHTML = ''
             var node = document.createElement("input");
-// id of variable to put into dictionary propdict
+    // id of variable to put into dictionary propdict
             var inid = elem.id.split('-');
-
             var thisid = propdict[inid[2]];
-//set up attributes from dictionary
+    //set up attributes from dictionary
             node.setAttribute('type',thisid[1]);
             node.setAttribute('value',thisid[2]);
             node.setAttribute('size',thisid[0]);
@@ -285,15 +296,40 @@ function updateinput(elem){
             if (thisid[1] == 'checkbox'){
                 node.setAttribute('onclick', "if(this.checked) {value='on'}");
             }
-
-//Addend onto parent
+    
+    //Addend onto parent
             document.getElementById(elem.id).appendChild(node);
-//do not freeze frozen data
+    //do not freeze frozen data
+                dofreeze = 0;
+        }
+             
+            
+    } else {
+// Update Wobble Table data 
+        var tabwob = document.getElementById(elem.id);
+        var childs = tabwob.childNodes.length;
+        console.log(tabwob.childNodes.length);
+        console.log(tabwob.childNodes);
+ //Remove previous child
+        var array = ["0 Table","90 Table","No Table"];
+        var select = document.createElement("select");
+        var dofreeze = 1;
+        if (childs == 1){
+//Go Passover on frozen text
+            tabwob.removeChild(tabwob.firstChild);
+            tabwob.appendChild(select);
+            for (var i=0; i<array.length; i++){
+                var option = document.createElement("option");
+                option.setAttribute("value",array[i]);
+                option.text = array[i];
+                select.appendChild(option);
+            }
+            tabwob.appendChild(document.createTextNode(""));
+            tabwob.appendChild(select);
+            tabwob.appendChild(document.createTextNode(""));
             dofreeze = 0;
         }
-         
-        
-//    }
+    }
     //console.log(document.getElementById(elem.id))
     //document.getElementById(elem.id).children[0].id = elem.id.replace('row','box')
     return dofreeze;
