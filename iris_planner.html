@@ -91,6 +91,8 @@
             <td>Roll</td>
             <td>AEC</td>
             <td>Track</td>
+            <td>Phase Orbital Wobble</td>
+            <td>Wobble Table</td>
         </tr>
         <tr id="1-1-samplerow">
             <td bgcolor="FFFFFF" id = "1-1-dayrow"/><input size=1 type="text" id="1-1-daybox"/></td>
@@ -105,6 +107,16 @@
             <td bgcolor="FFFFFF" id = "1-1-rollrow"><input size=3 type="text" id="1-1-rollbox"/ ></td>
             <td bgcolor="FFFFFF" id = "1-1-aecrow"><input size=1 type="checkbox" value="off" onclick="if(this.checked) {value='on'}" id="1-1-aecbox"/ ></td>
             <td bgcolor="FFFFFF" id = "1-1-trackrow"><input size=1 type="checkbox" value="off" onclick="if(this.checked) {value='on'}" id="1-1-trackbox"/ ></td>
+            <td bgcolor="FFFFFF" id = "1-1-wobblerow"><input size=1 type="checkbox" value="off" onclick="if(this.checked) {value='on'}" id="1-1-wobblebox"/ ></td>
+
+            <td bgcolor="FFFFFF" id = "1-1-tabwobblerow">
+                <select name="1-1-tabwobblerow" onchange="updatewobbletable(this)"/ ><
+                    <option value="0 Table" >0 Table </option>
+                    <option value="90 Table">90 Table </option>
+                    <option value="No Table">No Table </option>
+                </select>
+            </td>
+
             <td bgcolor="FFFFFF" id = "1-1-deleterow"><input type="button" id="1-1-delbutton" value="Delete" onclick="deleteRow(this)"/></td>
 <!--        
             <td><input type="button" id="addmorebutton" value="Add" onclick="insRow()"/></td>
